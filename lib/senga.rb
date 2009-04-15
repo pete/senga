@@ -9,6 +9,11 @@ require 'RMagick'
 #   image = graph.render(:xscale => 3, :yscale => 20)
 # There are probably other things you'll want to do with that, like this:
 #   File.open('some-graph.png', 'w') { |f| f.write image.to_blob }
+# And, finally, you could also do it like this:
+#   png = Senga.graph(:bgcolor => 'white', :xscale => 10, :yscale => 10) { |g|
+#     g.plot('green', [1, 2, 3, 4], 5)
+#   }.to_blob
+#   (File.open('another-graph.png', 'w') << png).close
 class Senga
 	# Render has it some options.
 	DefaultRenderOpts = {
@@ -21,6 +26,8 @@ class Senga
 		:bgcolor => 'transparent',
 	}
 
+	# The one-off syntax, where you get a Senga object yielded to the block that
+	# you pass, and it returns the rendered image.
 	def self.graph(opts = {}, &b)
 		g = new
 		b.call g
@@ -31,6 +38,8 @@ class Senga
 		@plots ||= []
 	end
 
+	# Pass three arguments:  the color (as a string), an array of points to
+	# plot, and (optionally) a width for the line.
 	def plot(*a)
 		plots << a
 	end
