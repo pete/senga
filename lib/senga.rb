@@ -53,6 +53,9 @@ class Senga
 		}
 		image.format = opts[:format]
 		draw = Magick::Draw.new
+		draw.stroke_linejoin 'miter'
+		draw.stroke_linecap 'square'
+
 		coords.each { |color,cs,width|
 			draw.stroke color
 			draw.stroke_width(width || 1)
