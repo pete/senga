@@ -80,12 +80,12 @@ class Senga
 		return unless sw > 0
 		draw.stroke color
 		draw.stroke_width sw
-		h -= sw / 2
-		w -= sw / 2
-		draw.line     0,     0,     0, h - 1
-		draw.line     0,     0, w - 1, 0
-		draw.line     0, h - 1, w - 1, h - 1
-		draw.line w - 1,     0, w - 1, h - 1
+		h -= sw / 2 + 1
+		w -= sw / 2 + 1
+		draw.line 0, 0, 0, h
+		draw.line 0, 0, w, 0
+		draw.line 0, h, w, h
+		draw.line w, 0, w, h
 	end
 
 	def sanitize_opts o
