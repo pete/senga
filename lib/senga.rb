@@ -87,6 +87,7 @@ class Senga
 
 	# Turns the current set of plots into arrays of coordinates.
 	def data_coords(xscale, yscale, ymax)
+		ymax *= yscale
 		plots.map { |c,data,*rest|
 			n = 0
 			([c] << data.map { |point|
