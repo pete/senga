@@ -56,6 +56,9 @@ class Senga
 		draw.stroke_linejoin 'miter'
 		draw.stroke_linecap 'square'
 
+		draw_border draw, opts[:width], opts[:height], 
+			opts[:border_width], opts[:color]
+
 		coords.each { |color,cs,width|
 			draw.stroke color
 			draw.stroke_width(width || 1)
@@ -70,6 +73,19 @@ class Senga
 	end
 
 	private
+
+	def draw_border draw, w, h, sw, color
+		sw = sw.to_i
+		return unless sw > 0
+		draw.color color
+		draw.stroke_width sw
+		h -= sw / 2
+		w -= sw / 2
+		draw.line 0, 0, 0, h
+		draw.line 0, 0, w, 0
+		draw.line 0, h, w, h
+		draw.line 0, w, w, h
+	end
 
 	def sanitize_opts o
 		xmax = plots.inject(0) { |max,p| [max, p[1].size].max }
