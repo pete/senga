@@ -19,7 +19,7 @@ spec = Gem::Specification.new { |s|
 
 	s.name = 'senga'
 	s.summary = "Senga draws lines.  Simplest graphing library."
-	s.homepage = "http://debu.gs/#{s.name}"
+	s.homepage = "http://github.com/pete/senga"
 	%w(rmagick).each &s.method(:add_dependency)
 	s.version = '0.1.0'
 }
