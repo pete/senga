@@ -64,7 +64,7 @@ class Senga
 		raise ArgumentError, "Don't have anything to plot?" if xmax < 2
 		ymax = plots.inject(0) { |max,p| [max, p[1].max].max }
 
-		o = DefaultRenderOpts.merge o
+		o = DefaultRenderOpts.merge(o).merge(:xmax => xmax, :ymax => ymax)
 
 		if o[:xscale].nil?
 			if o[:width].nil?
@@ -72,7 +72,7 @@ class Senga
 			end
 			o[:xscale] = o[:width] / xmax
 		end
-		o[:width] ||= o[:xscale] * xmax
+		o[:width] ||= o[:xscale] * (xmax - 1)
 
 		if o[:yscale].nil?
 			if o[:height].nil?
