@@ -38,7 +38,7 @@ class Senga
 	# Render has it some options.  See Senga::DefaultRenderOpts.
 	def render opts = {}
 		opts = sanitize_opts opts
-		coords = data_coords opts[:xscale], opts[:yscale], opts[:ymax]
+		coords = data_coords opts[:xscale], opts[:yscale], opts[:height]
 		image = Magick::Image.new(opts[:width], opts[:height]) {
 			self.background_color = opts[:bgcolor]
 		}
@@ -86,12 +86,11 @@ class Senga
 	end
 
 	# Turns the current set of plots into arrays of coordinates.
-	def data_coords(xscale, yscale, ymax)
-		ymax *= yscale
+	def data_coords(xscale, yscale, height)
 		plots.map { |c,data,*rest|
 			n = 0
 			([c] << data.map { |point|
-				a = [n, ymax - (point * yscale)]
+				a = [n, height - (point * yscale)]
 				n += xscale
 				a
 			}) + rest
