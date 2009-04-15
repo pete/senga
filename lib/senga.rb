@@ -77,7 +77,7 @@ class Senga
 	def draw_border draw, w, h, sw, color
 		sw = sw.to_i
 		return unless sw > 0
-		draw.color color
+		draw.stroke color
 		draw.stroke_width sw
 		h -= sw / 2
 		w -= sw / 2
