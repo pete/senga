@@ -82,10 +82,10 @@ class Senga
 		draw.stroke_width sw
 		h -= sw / 2
 		w -= sw / 2
-		draw.line 0, 0, 0, h
-		draw.line 0, 0, w, 0
-		draw.line 0, h, w, h
-		draw.line 0, w, w, h
+		draw.line 0,     0,     0, h - 1
+		draw.line 0,     0, w - 1, 0
+		draw.line 0, h - 1, w - 1, h - 1
+		draw.line 0, w - 1, w - 1, h - 1
 	end
 
 	def sanitize_opts o
