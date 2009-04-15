@@ -56,9 +56,6 @@ class Senga
 		draw.stroke_linejoin 'miter'
 		draw.stroke_linecap 'square'
 
-		draw_border draw, opts[:width], opts[:height], 
-			opts[:border_width], opts[:color]
-
 		coords.each { |color,cs,width|
 			draw.stroke color
 			draw.stroke_width(width || 1)
@@ -68,6 +65,10 @@ class Senga
 				b
 			}
 		}
+
+		draw_border draw, opts[:width], opts[:height], 
+			opts[:border_width], opts[:color]
+
 		draw.draw image
 		image
 	end
