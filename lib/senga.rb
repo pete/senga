@@ -18,6 +18,7 @@ class Senga
 		:height => nil,
 		:stroke_width => 1,
 		:format => 'PNG',
+		:bgcolor => 'transparent',
 	}
 
 	def self.graph(opts = {}, &b)
@@ -38,7 +39,9 @@ class Senga
 	def render opts = {}
 		opts = sanitize_opts opts
 		coords = data_coords opts[:xscale], opts[:yscale]
-		image = Magick::Image.new(opts[:width], opts[:height])
+		image = Magick::Image.new(opts[:width], opts[:height]) {
+			self.background_color = opts[:bgcolor]
+		}
 		image.format = opts[:format]
 		draw = Magick::Draw.new
 		coords.each { |color,cs,width|
