@@ -14,9 +14,17 @@ class Senga
 	DefaultRenderOpts = {
 		:xscale => nil,
 		:yscale => nil,
+		:width => nil,
+		:height => nil,
 		:stroke_width => 1,
 		:format => 'PNG',
 	}
+
+	def self.graph(opts = {}, &b)
+		g = new
+		b.call g
+		g.render opts
+	end
 
 	def plots
 		@plots ||= []
