@@ -63,7 +63,8 @@ task(:static_gemspec) {
 	}.join << 
 		"\ts.version = #{spec.version.to_s.inspect}\n" <<
 		spec.dependencies.map { |dep|
-			"\ts.add_dependency #{dep.inspect}\n"
+			"\ts.add_dependency #{dep.name.inspect}, " \
+				"#{dep.version_requirements.to_s.inspect}\n"
 		}.join
 
 	File.open("#{spec.name}.gemspec", 'w') { |f|

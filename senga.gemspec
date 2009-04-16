@@ -16,7 +16,7 @@ spec = Gem::Specification.new { |s|
 	s.summary = "Senga draws lines.  Simplest graphing library."
 	s.homepage = "http://github.com/pete/senga"
 	s.version = "0.1.0"
-	s.add_dependency #<Gem::Dependency:0x2b7d9b25c760 @name="rmagick", @version_requirements=#<Gem::Requirement:0x2b7d9b25c6e8 @version=nil, @requirements=[[">=", #<Gem::Version "0">]]>, @version_requirement=nil, @type=:runtime>
+	s.add_dependency "rmagick", ">= 0"
 }
 
 Gem::Builder.new(spec).build if __FILE__ == $0
