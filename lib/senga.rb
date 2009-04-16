@@ -56,6 +56,8 @@ class Senga
 		draw.stroke_linejoin 'miter'
 		draw.stroke_linecap 'square'
 
+		draw_grid draw, opts
+
 		coords.each { |color,cs,width|
 			draw.stroke color
 			draw.stroke_width(width || 1)
@@ -86,6 +88,27 @@ class Senga
 		draw.line 0, 0, w, 0
 		draw.line 0, h, w, h
 		draw.line w, 0, w, h
+	end
+
+	def draw_grid draw, o
+		return unless o[:grid_res]
+
+		draw.stroke(o[:grid_color] || o[:border_color])
+
+		xres, yres = o[:grid_res]
+		xstep, ystep = o[:xscale] * (xres || 1), o[:yscale] * (yres || 1)
+
+		xstep.step(o[:width] - 1, xstep) { |x|
+			draw.line x, 0, x, o[:height]
+		} if xres
+
+		xstep.step(o[:width] - 1, xstep) { |x|
+			draw.line x, 0, x, o[:height]
+		} if xres
+
+		ystep.step(o[:height] - 1, ystep) { |y|
+			draw.line 0, y, o[:width], y
+		} if yres
 	end
 
 	def sanitize_opts o
