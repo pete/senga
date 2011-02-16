@@ -8,7 +8,7 @@ spec = Gem::Specification.new { |s|
 
 	s.author = "Pete Elmore"
 	s.email = "pete@debu.gs"
-	s.files = Dir["{lib,doc,bin,ext}/**/*"].delete_if {|f| 
+	s.files = Dir["{lib,doc,bin,ext}/**/*"].delete_if {|f|
 		/\/rdoc(\/|$)/i.match f
 	} + %w(Rakefile)
 	s.require_path = 'lib'
@@ -26,7 +26,7 @@ spec = Gem::Specification.new { |s|
 
 Rake::RDocTask.new(:doc) { |t|
 	t.main = 'doc/README'
-	t.rdoc_files.include 'lib/**/*.rb', 'doc/*', 'bin/*', 'ext/**/*.c', 
+	t.rdoc_files.include 'lib/**/*.rb', 'doc/*', 'bin/*', 'ext/**/*.c',
 		'ext/**/*.rb'
 	t.options << '-S' << '-N'
 	t.rdoc_dir = 'doc/rdoc'
@@ -41,7 +41,7 @@ task(:clean) {
 }
 
 desc "Builds and installs the gem for #{spec.name}"
-task(:install => :package) { 
+task(:install => :package) {
 	g = "pkg/#{spec.name}-#{spec.version}.gem"
 	system "sudo gem install -l #{g}"
 }
