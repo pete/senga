@@ -1,4 +1,18 @@
 Senga draws lines.  That's it.  If what you want is some lines drawn and to do
 the rest yourself using RMagick, then this may be what you want.
 
+Nobody ever checks the RDoc any more because nobody writes RDoc any more.  Here
+is an example if you haven't checked the RDoc:
+
+	require 'prime'
+	png = Senga.graph(:bgcolor => 'white', :xscale => 10, :yscale => 10) { |g|
+		g.plot('green', [1, 2, 3, 4, 5, 6, 7], 5)
+		g.plot('red', [1, 1, 2, 3, 5, 8, 13], 6)
+		g.plot('blue', Prime.take(7), 4)
+		g.plot('black', (1..7).map { rand 10 }, 1)
+	}.to_blob
+	# And if you feel like doing some additional processing, like overlaying
+	# the graph on top of an image or something, do that before calling to_blob.
+	(File.open('graph.png', 'w') << png).close
+
 See the doc/ directory for additional information.
